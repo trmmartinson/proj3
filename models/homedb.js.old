@@ -1,0 +1,17 @@
+
+module.exports = function(sequelize, Sequelize) {
+
+	var Home = sequelize.define('home', {
+		id: { autoIncrement: true, primaryKey: true, type: Sequelize.INTEGER},
+		zipcode: { type: Sequelize.INTEGER,notEmpty: true},
+		image_url: {type:Sequelize.TEXT},
+		image_blob: {type:Sequelize.BLOB}
+
+
+
+
+});
+console.log("homes---------------------");
+	return Home;
+
+}
