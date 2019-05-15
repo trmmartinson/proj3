@@ -7,8 +7,8 @@ function House(props) {
   }
   return (
         <div className="col-sm">
-          <img onClick={() => { props.clicker("view" + props.id) }}   src={"/images/" + props.image_url} alt="house" height="250" width="250"></img>
-           <h5>{props.address}</h5>
+          <img onClick={() => { props.clicker("view" + props.id) }}   src={"/images/" + props.image_url} alt="house" height="250" width="320"></img>
+           <h6>{props.address}</h6>
         </div>
   );
 }

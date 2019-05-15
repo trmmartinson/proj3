@@ -11,8 +11,20 @@ import App from "./App";
 import SingleHouse from "./SingleHouse";
 import Notfound from "./notfound";
 
-const routing = (
+/*const routing = (
   <Router>
+    <div>
+      <Switch>
+        <Route exact path="/" component={App} />
+        <Route path="/SingleHouse" component={SingleHouse} />
+        <Route component={Notfound} />
+      </Switch>
+    </div>
+  </Router>
+);
+ReactDOM.render(routing, document.getElementById("root")); */
+const routing = (
+<Router>
     <div>
       <ul>
         <li>
@@ -35,5 +47,4 @@ const routing = (
     </div>
   </Router>
 );
-
 ReactDOM.render(routing, document.getElementById("root"));

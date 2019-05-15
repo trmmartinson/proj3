@@ -15,7 +15,7 @@ const styles = theme => ({
   },
   formControl: {
     margin: theme.spacing.unit,
-    minWidth: 140,
+    minWidth: 120,
   },
   selectEmpty: {
     marginTop: theme.spacing.unit * 2,
@@ -24,8 +24,8 @@ const styles = theme => ({
 
 class SimpleSelect extends React.Component {
   state = {
-    min: 0,
-    max: 100000,
+    age: 10,
+    dit: 20,
     name: 'hai',
     labelWidth: 0,
   };
@@ -38,8 +38,8 @@ class SimpleSelect extends React.Component {
 
   handleSelectChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-    //alert("ChaNgE in component:" + event.target.name + " " + event.target.value);
-    this.props.send_data(event.target.name, event.target.value);
+    alert("ChaNgE in component:" + event.target.name + " " + event.target.value);
+    this.props.change(event.target.name, event.target.value);
   };
 
   render() {
@@ -49,71 +49,69 @@ class SimpleSelect extends React.Component {
     return (
       <form className={classes.root} autoComplete="off">
 
-        <FormControl variant="text" className={classes.formControl}>
-          <InputLabel
-            ref={ref => {
-              this.InputLabelRef = ref;
-            }}
-            htmlFor="outlined-min-simple"
-          >
-            Minimum Price
-          </InputLabel>
-          <Select
-            value={this.state.min}
-            onChange={this.handleSelectChange}
-            input={
-              <OutlinedInput
-                labelWidth={this.state.labelWidth}
-                name="min"
-                id="outlined-min-simple"
-              />
-            }
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={0}>$0</MenuItem>
-            <MenuItem value={50000}>$50,000 </MenuItem>
-            <MenuItem value={10000}>$100,000</MenuItem>
-          </Select>
-        </FormControl>
-
-
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel
             ref={ref => {
               this.InputLabelRef = ref;
             }}
-            htmlFor="outlined-max-simple"
+            htmlFor="outlined-age-simple"
           >
-            Maximum Price
+            Age
           </InputLabel>
           <Select
-            value={this.state.max}
+            value={this.state.age}
             onChange={this.handleSelectChange}
             input={
               <OutlinedInput
                 labelWidth={this.state.labelWidth}
-                name="max"
-                id="outlined-max-simple"
+                name="age"
+                id="outlined-age-simple"
               />
             }
           >
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={50000}>$50,000</MenuItem>
-            <MenuItem value={100000}>$100,000 </MenuItem>
-            <MenuItem value={150000}>$150,000</MenuItem>
-            <MenuItem value={1000000}>$1,000,000</MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty keep this one?</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel
+            ref={ref => {
+              this.InputLabelRef = ref;
+            }}
+            htmlFor="outlined-dit-simple"
+          >
+            Dit
+          </InputLabel>
+          <Select
+            value={this.state.dit}
+            onChange={this.handleSelectChange}
+            input={
+              <OutlinedInput
+                labelWidth={this.state.labelWidth}
+                name="dit"
+                id="outlined-dit-simple"
+              />
+            }
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty keep this one?</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
           </Select>
         </FormControl>
 
+
+
+
+
+
       </form>
-
-
-
-
     );
   }
 }
