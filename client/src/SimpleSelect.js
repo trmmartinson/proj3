@@ -23,12 +23,15 @@ const styles = theme => ({
 });
 
 class SimpleSelect extends React.Component {
-  state = {
-    min: 0,
-    max: 100000,
-    name: 'hai',
-    labelWidth: 0,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'hai',
+      labelWidth: 0,
+    };
+    debugger;
+  }
+  
 
   componentDidMount() {
     this.setState({
@@ -59,8 +62,8 @@ class SimpleSelect extends React.Component {
             Minimum Price
           </InputLabel>
           <Select
-            value={this.state.min}
-            onChange={this.handleSelectChange}
+            value={this.props.min}
+            onChange={this.props.onMinMaxChange}
             input={
               <OutlinedInput
                 labelWidth={this.state.labelWidth}
@@ -89,8 +92,8 @@ class SimpleSelect extends React.Component {
             Maximum Price
           </InputLabel>
           <Select
-            value={this.state.max}
-            onChange={this.handleSelectChange}
+            value={this.props.max}
+            onChange={this.props.onMinMaxChange}
             input={
               <OutlinedInput
                 labelWidth={this.state.labelWidth}

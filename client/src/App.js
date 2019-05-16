@@ -9,7 +9,6 @@ import InitScreen from './InitScreen.js';
 //import FormDialog from './FormDialog.js';
 
 import SignUp from './SignUp.js';
-
 import SignIn from './SignIn.js';
 
 //import SimpleDialog from './SimpleDialog.js';
@@ -39,21 +38,20 @@ const styles = theme => ({
 
 
 class App extends React.Component {
-  state = {
-    search: "",
-    results: [],
-    min: '0',
-    max: '100000',
-    name: 'hai',
-    labelWidth: 0,
-    houseCount: 0,
-    is_logged_in: false,
-    user: "",
-    show_init: false // for debug mainly
-  };
-
-
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: "",
+      results: [],
+      name: 'hai',
+      labelWidth: 0,
+      houseCount: 0,
+      is_logged_in: false,
+      user: "",
+      show_init: false // for debug mainly
+    };
+    debugger;
+  }
 
   get_allhomes = (query) => {
     //console.log("allhomeq start");
@@ -128,7 +126,8 @@ class App extends React.Component {
   };
 
   get_some_homes() {
-    Axios.get("/some_homes", { params: { min: this.state.min, max: this.state.max } })
+    console.log("min is here" + this.props.min);
+    Axios.get("/some_homes", { params: { min: this.props.min, max: this.props.max } })
       .then(res => this.setState({ results: Object.values(res.data) }))
       .catch(err => console.log(err));
 
@@ -136,8 +135,9 @@ class App extends React.Component {
 
 
   handleSelectChange = event => {
-    alert("lcal");
+    alert("new handle select change");
     this.setState({ [event.target.name]: event.target.value });
+    this.get_some_homes();
     //console.log("ChaNgE in component:" + event.target.name + " " + event.target.value);
   };
   handleClick = (the_button) => {
@@ -164,9 +164,9 @@ class App extends React.Component {
     //console.log("main Rend" + JSON.stringify(this.state.show_init));
     //console.log("type:" + typeof this.handle_init_screen);
     return (
-      <div className = "container">
+      <div className = "container">`
           <div className="row">
-          <div className="col" >
+          <div className="col" >/chunk 
           <img src={"/images/logo.png"}  alt="logo" height="200" width="200"></img>
           </div>
           <div className = "col"></div>
@@ -181,7 +181,7 @@ class App extends React.Component {
 
           <Header/>
           <span>Total Matches:{this.state.housecount}</span> 
-          <SimpleSelect send_data={this.handleSelectChangelow} />
+          <SimpleSelect onMinMaxChange={this.props.onMinMaxChange} max={this.props.max} min={this.props.min}/>
 
 
 
