@@ -81,7 +81,7 @@ export default class SignIn extends React.Component {
     return null;
     return (
       <React.Fragment>
-        <Button size = "small" variant="text" color="primary" onClick={this.handleClickOpen}>
+        <Button className = "dorky" size = "small" variant="text" color="primary" onClick={this.handleClickOpen}>
           Sign In 
         </Button>
         <Dialog

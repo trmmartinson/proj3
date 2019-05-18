@@ -5,6 +5,8 @@ const sequelize = require("sequelize");
 const passport = require("passport");
 const db = require("./models");
 const bodyParser = require('body-parser');
+const { spawn } = require('child_process');
+
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -21,7 +23,7 @@ app.use(passport.session());
 // Send every other request to the React app
 // Define any API routes before this runs
 //app.get("*", (req, res) => {
-//res.sendFile(path.join(__dirname, "./client/build/index.html"));
+//res.sendFile(path.join(__dirname, "./client/build/index.html"))[]
 //});
 app.get('/all_homes', (req, res) => {
   db.home.findAll()
@@ -52,6 +54,17 @@ app.get('/some_homes/', (req, res) => {
 
 
 app.get('/home/:id', (req, res) => {
+  /* spawn('sh', ['maillead.sh',
+                 'firstname lastname',
+                 '555-1212',
+                 'email@thisplace.com',
+                 '32768 Overflow lane',
+                 'propid',
+                 'tom'
+       ], {
+    cwd: '/usr/local/bin'
+  }) */
+
   db.home.findOne({ where: {id : req.params.id } } )
     .then(homes => {
       console.log("zzzzzquery" + homes);
@@ -59,7 +72,13 @@ app.get('/home/:id', (req, res) => {
     });
 });
 
-
+app.get('/agent/:id', (req, res) => {
+  db.agent.findOne({ where: {id : req.params.id } } )
+    .then(agent => {
+      console.log("zzzzzquery agent" + agent);
+      res.json(agent);
+    });
+});
 
 
 app.post('/signup', (req, res) => {

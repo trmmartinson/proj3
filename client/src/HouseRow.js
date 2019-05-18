@@ -32,7 +32,7 @@ import House from './House.js';
 
 */
 function HouseRow(props) {
-  console.log("ZZZZZZZZZZZZZZZZZZZhouserow" + props.image_url0 + "CLicker:" + typeof props.handleClick);
+  //console.log("ZZZZZZZZZZZZZZZZZZZhouserow" + props.image_url0 + "CLicker:" + typeof props.handleClick);
   return (
     <div className="container black_box">
       <div className="row">

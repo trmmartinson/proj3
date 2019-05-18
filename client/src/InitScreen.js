@@ -57,7 +57,7 @@ export default class InitScreen extends React.Component {
     this.setState({ open: false });
   };
   render() {
-    console.log('init of initscren' + this.state.show_init_screen)
+    //console.log('init of initscren' + this.state.show_init_screen)
     if (!this.props.show_init_screen)
       return null;
 

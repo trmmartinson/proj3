@@ -1,0 +1,105 @@
+Saturday:
+0)  put logo on top of all screens:q
+
+1)  selectors -  put choices text in + integrate w/query
+   -beds
+   -baths
+   -square_feet
+   -acres
+2) put text under pictures
+   bed, bath, sqlft, propsize
+   + text blurb on second screen
+3) finish signin/signup
+  -state is handled for sinput so move it to signin
+  -make sure naming is consistent user vs housesi vs 2 js progs
+  -move user parsm 
+4) make form on second screen look better + post + email
+5) email 
+   --stop?
+) total matches
+) initial screen (class?)
+) save search button
+) city
+
+xfer this list to class also: plan b, updated homepage if I fail at one...
+latest versions:
+1. delfromgit # this is the book app
+2. determin fark, farkscrape looks pretty good npm start
+3. friendffinder is almost done. determine best 
+   and ask on wed what to do after post. to get result
+
+today;
+   -new user, login + return stuffs 
+  #-initial dialog.  city + user+pass  mvp version
+    return to calling app then mvp done...
+  -add form to screen two - email
+  -add pic to agent file
+  -make less ugly 
+     -header
+     -16X9 images
+     -float
+  -get lat/long + city stuff working
+  -get email to email
+  
+
+questions for class:
+  1. what is the deal with this.props.passedfunction losing scope of this?
+  2. public directory and heroku, will pictures work? Do I need 
+      to get them via http or can react see them as is?
+
+
+mvp 0:
+
+Xload house images
+Xshow grid of them
+Xcreate modal second screen with bigger picture
+
+#add a couple sample selects (miprice, maxprice) call server and display them
+add agent table, email table
+add passport test then turn off until done
+initial screen w/o lookup
+do a couple of props for each of the image types
+add form to second screen
+email contact from second screen
+
+schema:
+  house
+    price
+    image_url
+    bathrooms
+    b edrooms  
+    lat, lng
+    city 
+    state
+    zip
+    square_feet
+    acres
+  agent
+    name
+    email
+  email
+    agent 
+    house.id 
+    email
+    
+
+
+
+    
+  
+
+
+0. review proj3 requirements (router?) & plan
+   -mvp
+   -first screen?  Yes, but do it minimally, simulate at first
+   -a couple of hours
+   -second screen - home details email leads
+   options on first screen
+
+   save user + selection
+steps: 1. house screen with image + forms + post forms   
+       2. at least one ui controlZZ
+
+
+1. s
+

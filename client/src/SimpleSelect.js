@@ -26,10 +26,9 @@ class SimpleSelect extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'hai',
+      //nerf name: 'hai',
       labelWidth: 0,
     };
-    debugger;
   }
   
 
@@ -40,6 +39,7 @@ class SimpleSelect extends React.Component {
   }
 
   handleSelectChange = event => {
+    alert("change in simple select");
     this.setState({ [event.target.name]: event.target.value });
     //alert("ChaNgE in component:" + event.target.name + " " + event.target.value);
     this.props.send_data(event.target.name, event.target.value);
@@ -47,12 +47,12 @@ class SimpleSelect extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log("component props" + JSON.stringify(this.props));
+    //console.log("component props" + JSON.stringify(this.props));
 
     return (
       <form className={classes.root} autoComplete="off">
 
-        <FormControl variant="text" className={classes.formControl}>
+        <FormControl variant="standard" className={classes.formControl}>
           <InputLabel
             ref={ref => {
               this.InputLabelRef = ref;
@@ -72,14 +72,13 @@ class SimpleSelect extends React.Component {
               />
             }
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
             <MenuItem value={0}>$0</MenuItem>
             <MenuItem value={50000}>$50,000 </MenuItem>
             <MenuItem value={10000}>$100,000</MenuItem>
           </Select>
         </FormControl>
+
+
 
 
         <FormControl variant="outlined" className={classes.formControl}>
@@ -111,6 +110,139 @@ class SimpleSelect extends React.Component {
             <MenuItem value={1000000}>$1,000,000</MenuItem>
           </Select>
         </FormControl>
+
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel
+            ref={ref => {
+              this.InputLabelRef = ref;
+            }}
+            htmlFor="outlined-beds-simple"
+          >
+            Bedrooms
+          </InputLabel>
+          <Select
+            value={this.props.beds}
+            onChange={this.props.onMinMaxChange}
+            input={
+              <OutlinedInput
+                labelWidth={this.state.labelWidth}
+                name="beds"
+                id="outlined-beds-simple"
+              />
+            }
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={1}>1+</MenuItem>
+            <MenuItem value={2}>2+</MenuItem>
+            <MenuItem value={3}>3+</MenuItem>
+            <MenuItem value={4}>4+</MenuItem>
+            <MenuItem value={5}>5+</MenuItem>
+          </Select>
+        </FormControl>
+
+       
+
+
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel
+            ref={ref => {
+              this.InputLabelRef = ref;
+            }}
+            htmlFor="outlined-baths-simple"
+          >
+            Bathrooms
+          </InputLabel>
+          <Select
+            value={this.props.baths}
+            onChange={this.props.onMinMaxChange}
+            input={
+              <OutlinedInput
+                labelWidth={this.state.labelWidth}
+                name="baths"
+                id="outlined-baths-simple"
+              />
+            }
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={1}>1+</MenuItem>
+            <MenuItem value={2}>2+</MenuItem>
+            <MenuItem value={3}>3+</MenuItem>
+            <MenuItem value={4}>4+</MenuItem>
+            <MenuItem value={4}>5+</MenuItem>
+          </Select>
+        </FormControl>
+
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel
+            ref={ref => {
+              this.InputLabelRef = ref;
+            }}
+            htmlFor="outlined-square_feet-simple"
+          >
+            Square Feet
+          </InputLabel>
+          <Select
+            value={this.props.square_feet}
+            onChange={this.props.onMinMaxChange}
+            input={
+              <OutlinedInput
+                labelWidth={this.state.labelWidth}
+                name="square_feet"
+                id="outlined-square_feet-simple"
+              />
+            }
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={500}>500+</MenuItem>
+            <MenuItem value={1000}>1000+</MenuItem>
+            <MenuItem value={1500}>1500+</MenuItem>
+            <MenuItem value={2000}>2000+</MenuItem>
+            <MenuItem value={3000}>3000+</MenuItem>
+          </Select>
+        </FormControl>
+
+
+
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel
+            ref={ref => {
+              this.InputLabelRef = ref;
+            }}
+            htmlFor="outlined-acres-simple"
+          >
+            Acres
+          </InputLabel>
+          <Select
+            value={this.props.acres}
+            onChange={this.props.onMinMaxChange}
+            input={
+              <OutlinedInput
+                labelWidth={this.state.labelWidth}
+                name="acres"
+                id="outlined-acres-simple"
+              />
+            }
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={1}>1+</MenuItem>
+            <MenuItem value={2}>2+</MenuItem>
+            <MenuItem value={3}>3+</MenuItem>
+            <MenuItem value={4}>4+</MenuItem>
+            <MenuItem value={4}>5+</MenuItem>
+          </Select>
+        </FormControl>
+
+
+
+
 
       </form>
 

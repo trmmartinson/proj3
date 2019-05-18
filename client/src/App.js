@@ -10,6 +10,7 @@ import InitScreen from './InitScreen.js';
 
 import SignUp from './SignUp.js';
 import SignIn from './SignIn.js';
+import Logo from './Logo.js';
 
 //import SimpleDialog from './SimpleDialog.js';
 //import ReactDOM from 'react-dom';
@@ -50,15 +51,16 @@ class App extends React.Component {
       user: "",
       show_init: false // for debug mainly
     };
-    debugger;
+//    debugger;
   }
 
   get_allhomes = (query) => {
     //console.log("allhomeq start");
+    alert("allhomesget");
     Axios.get("/all_homes")
       .then(res => this.setState({ results: Object.values(res.data) }))
       .catch(err => console.log(err));
-    console.log("allhomeq end");
+    //console.log("allhomeq end");
   };
 
 
@@ -78,7 +80,9 @@ class App extends React.Component {
     //console.log("update_user setstate:" + this.state.user);
 
   }
-
+  test(inut) {
+      alert("test called  with" + inut);
+  } 
   view = (num) => {
     //alert(this.state.results[num].volumeInfo.previewLink    );
     //let url = this.state.results[num].volumeInfo.previewLink;
@@ -96,6 +100,7 @@ class App extends React.Component {
   }
 
   save = (num) => {
+    alert("if yousee this save should be unused?")
     let save_stuff = {
       title: this.state.results[num].volumeInfo.title,
       authors: this.state.results[num].volumeInfo.authors,
@@ -108,7 +113,7 @@ class App extends React.Component {
   }
   onInputChange = (event) => {
     //console.log("Search changed ..." + event.target.value)
-    alert("local Search changed ..." + event.target.value)
+    alert("if you see this figure out why before you remove it local Search changed ..." + event.target.value)
     /*
     if (event.target.value) {
         this.setState({searchString: event.target.value})
@@ -117,18 +122,21 @@ class App extends React.Component {
     } */
   }
   handle_init_screen = (stuff) => {
-    console.log("fuunction handle init " + stuff);
+    //console.log("fuunction handle init " + stuff);
 
   }
   handleSelectChangelow = (event_name, event_value) => {
     //gets events from change tabs
+    alert("low i finsidhed")
     this.setState({ [event_name]: event_value }, this.get_some_homes);
   };
 
   get_some_homes() {
-    console.log("min is here" + this.props.min);
+    //alert("obsolete get homes ");
+    //console.log("min is here" + this.props.min);
     Axios.get("/some_homes", { params: { min: this.props.min, max: this.props.max } })
-      .then(res => this.setState({ results: Object.values(res.data) }))
+      //.then(res => this.setState({ results: Object.values(res.data) }))
+      .then(res => this.props.handleHomeList({ results: Object.values(res.data) }))
       .catch(err => console.log(err));
 
   }
@@ -153,25 +161,41 @@ class App extends React.Component {
     this.setState({
       labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth,
     }); */
-    this.get_allhomes();
+    //this.get_allhomes();
   }
+  componentWillReceiveProps(nextProps) {
+    // you can also check props with current version
+    // and set conditions to update state or not
+    //this.updateState();
+    //alert("propchang2" + JSON.stringify(nextProps));
+    //alert("willget" + JSON.stringify(nextProps))
+    //alert("willrecprops min,max" + this.props.min + this.props.max);
+    /*
+    this.setState({
+      results: this.props.results,
 
+    }); */
+    //this.get_some_homes();
+}
   //<SimpleSelect onChange={(evt, key, payload)=>console.log("---payload--" + payload)}     />
   render() {
-    //console.log("falid fn? "+ typeof this.update_user)
+    //alert("app home list:" + typeof  + this.props.handleHomeList)
+    //alert("props in app  "+ JSON.stringify(this.props.min  + "max:" + this.props.max)) ;
     //needed by old way i was doing Select? 
 //    const { classes } = this.props;
     //console.log("main Rend" + JSON.stringify(this.state.show_init));
     //console.log("type:" + typeof this.handle_init_screen);
+ // this is a function here...   alert("app.p" + typeof   this.props.onMinMaxChange);
+ //alert("app says" + typeof this.props.onUserChange)
     return (
       <div className = "container">`
           <div className="row">
-          <div className="col" >/chunk 
-          <img src={"/images/logo.png"}  alt="logo" height="200" width="200"></img>
+          <div className="col" >
+          <Logo />
           </div>
           <div className = "col"></div>
           { !this.state.is_loggged_in && 
-          <SignUp init={true} send_data={this.handle_init_screen} is_logged_in={this.state.is_logged_in} />
+          <SignUp init={true} send_data={this.handle_init_screen} is_logged_in={this.state.is_logged_in} onUserChange={this.props.onUserChange} />
           }
           { !this.state.is_loggged_in && 
           <SignIn handle_update_user={this.update_login_user} is_logged_in={this.state.is_logged_in} />
@@ -181,14 +205,20 @@ class App extends React.Component {
 
           <Header/>
           <span>Total Matches:{this.state.housecount}</span> 
-          <SimpleSelect onMinMaxChange={this.props.onMinMaxChange} max={this.props.max} min={this.props.min}/>
+          <SimpleSelect onMinMaxChange={this.props.onMinMaxChange} max={this.props.max} min={this.props.min}
+              beds={this.props.beds}
+              baths={this.props.baths}
+              square_feet={this.props.square_feet}
+              acres={this.props.acres}
+          
+          />
 
 
 
 
         <InitScreen show_init_screen={this.state.show_init} send_data={this.handle_init_screen} />
         <div className="">
-          {_.chunk(this.state.results, 3).map((house, idx) => (
+          {_.chunk(this.props.results, 3).map((house, idx) => (
             <HouseRow
               clicker={this.handleClick}
               key={idx}

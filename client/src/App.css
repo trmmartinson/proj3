@@ -1,14 +1,19 @@
 .App {
   text-align: center;
+  background-color: blue;
 }
-
+body {
+  background-color: #E0EbF1
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
-
+.dorky {
+  width: 30;
+}
 .black_box {
-     border-color: white;
+     border-color: red;
      border-width: 2px;
      border-style: solid;
      margin: 35px;
