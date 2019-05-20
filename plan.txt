@@ -1,7 +1,10 @@
-Saturday:
-0)  put logo on top of all screens:q
+monday:
+-test loading this on vmware laptop + test mail
 
-1)  selectors -  put choices text in + integrate w/query
+0)  put logo on top of all screens
+
+#1) improve selectors 
+   selectors -  put choices text in + integrate w/query
    -beds
    -baths
    -square_feet
@@ -14,9 +17,11 @@ Saturday:
   -make sure naming is consistent user vs housesi vs 2 js progs
   -move user parsm 
 4) make form on second screen look better + post + email
-5) email 
    --stop?
-) total matches
+   -autofill?
+
+5) total matches or remove total matches
+stop
 ) initial screen (class?)
 ) save search button
 ) city

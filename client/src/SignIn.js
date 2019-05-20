@@ -34,37 +34,51 @@ export default class SignIn extends React.Component {
       password: e.target.value
     });
   }
+  update_user = () => {
+    this.props.onUserChange({
+      "sign_up_name": "response.data.username",
+      "sign_up_email": "response.data.email",
+    });
+  }
   validate_input = () => {
-       // what is happening to this in the update below?
-       var monkey = this.props.handle_update_user;
-       Axios.get('/signin', {
-        params: {
-          email: this.state.email,
-          password: this.state.password,
-        }
-      })
-      .then(function (response) {
-        //console.log(JSON.stringify(response.data));
-        monkey({ 
-          "user" : response.data,
-          "is_logged_in" : true
+    // what is happening to this in the update below?
 
-         } ); 
+    Axios.get('/signin', {
+      params: {
+        email: this.state.email,
+        password: this.state.password,
+      }
+    })
+      .then((response) => {
+        if(!response.data)
+           alert("Bad password");
+        else 
+        {
+        this.props.onUserChange({
+          "sign_up_name": response.data.username,
+          "sign_up_email": response.data.email,
+        }); 
+    this.handleClose();
+      }
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
-      })
-      this.handleClose();
+      });
+
+
+
+
+
   }
 
-/*  update_user(user ) {
-    this.setState(prevState => ({
-      jasper: {
-          ...prevState.jasper,
-          name: 'something'
-      }
-  }))
-  } */
+  /*  update_user(user ) {
+      this.setState(prevState => ({
+        jasper: {
+            ...prevState.jasper,
+            name: 'something'
+        }
+    }))
+    } */
   oneOpen = () => {
     this.setState({ open: true });
   }
@@ -72,17 +86,17 @@ export default class SignIn extends React.Component {
   handleClickOpen = () => {
     this.setState({ open: true });
   };
-
   handleClose = () => {
     this.setState({ open: false });
   };
   render() {
+    //alert("sign in of " + typeof this.props.onUserChange);
     if (this.props.is_logged_in)
-    return null;
+      return null;
     return (
       <React.Fragment>
-        <Button className = "dorky" size = "small" variant="text" color="primary" onClick={this.handleClickOpen}>
-          Sign In 
+        <Button className="dorky" size="small" variant="text" color="primary" onClick={this.handleClickOpen}>
+          Sign In
         </Button>
         <Dialog
           open={this.state.open}
@@ -90,7 +104,7 @@ export default class SignIn extends React.Component {
         >
           <DialogTitle id="form-dialog-title">Sign In</DialogTitle>
           <DialogContent>
-           
+
 
             <TextField
               margin="dense"
@@ -128,3 +142,30 @@ export default class SignIn extends React.Component {
     );
   }
 }
+/* pre es6 coe
+ alert(typeof this.props.onUserChange);
+       let callthis = this.update_user;
+       Axios.get('/signin', {
+        params: {
+          email: this.state.email,
+          password: this.state.password,
+        }
+      })
+      .then(function (response) {
+        console.log( "userback" + JSON.stringify(response.data));
+        console.log( response.data.username);
+        console.log('porezzzz' + response.data.email);
+        *this.update_user(); *
+        alert("thing2" + this);
+
+        callthis.onUserChange({
+          "sign_up_name":  "response.data.username",
+          "sign_up_email": "response.data.email",
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      this.handleClose();
+
+*/

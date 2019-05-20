@@ -38,27 +38,25 @@ export default class SignUp extends React.Component {
     });
   }
   validate_input = () => {
-        alert("store sign_up_name" + this.state.sign_up_name);
-     this.props.onUserChange({
-        "sign_up_name": this.state.sign_up_name,
-        "sign_up_email" : this.state.sign_up_email,
-        "sign_up_password" : this.state.sign_up_password,
-       
-     }); 
+    //alert("store sign_up_name" + this.state.sign_up_name);
+    this.props.onUserChange({
+      "sign_up_name": this.state.sign_up_name,
+      "sign_up_email": this.state.sign_up_email,
+    });
 
-   /* this.props.send_data({ 
-        "name": this.state.sign_up_name,
-        "sign_up_email" : this.state.sign_up_email,
-        "sign_up_password" : this.state.sign_up_password,
-       } ); */
-       console.log("post singup");
-       Axios.post('/signup', {
-        "sign_up_name": this.state.sign_up_name,
-        "sign_up_email" : this.state.sign_up_email,
-        "sign_up_password" : this.state.sign_up_password,
+    /* this.props.send_data({ 
+         "name": this.state.sign_up_name,
+         "sign_up_email" : this.state.sign_up_email,
+         "sign_up_password" : this.state.sign_up_password,
+        } ); */
+    console.log("post singup");
+    Axios.post('/signup', {
+      "sign_up_name": this.state.sign_up_name,
+      "sign_up_email": this.state.sign_up_email,
+      "sign_up_password": this.state.sign_up_password,
 
 
-      })
+    })
       .then(function (response) {
         //resultElement.innerHTML = generateSuccessHTMLOutput(response);
       })
@@ -81,9 +79,9 @@ export default class SignUp extends React.Component {
     this.setState({ open: false });
   };
   render() {
-    //alert("type of " + typeof this.props.handleMinMaxChange);
+    //alert("sign up:type of " + typeof this.props.onUserChange);
     if (this.props.is_logged_in)
-    return null;
+      return null;
     return (
       <React.Fragment>
         <Button variant="text" color="primary" onClick={this.handleClickOpen}>

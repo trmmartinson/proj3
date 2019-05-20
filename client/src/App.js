@@ -54,11 +54,12 @@ class App extends React.Component {
 //    debugger;
   }
 
-  get_allhomes = (query) => {
+  get_all_homes = (query) => {
     //console.log("allhomeq start");
     alert("allhomesget");
     Axios.get("/all_homes")
-      .then(res => this.setState({ results: Object.values(res.data) }))
+      .then(res => this.props.handleHomeList({ results: Object.values(res.data) }))
+      //.then(res => this.setState({ results: Object.values(res.data) }))
       .catch(err => console.log(err));
     //console.log("allhomeq end");
   };
@@ -132,7 +133,7 @@ class App extends React.Component {
   };
 
   get_some_homes() {
-    //alert("obsolete get homes ");
+    alert("obsolete get homes ");
     //console.log("min is here" + this.props.min);
     Axios.get("/some_homes", { params: { min: this.props.min, max: this.props.max } })
       //.then(res => this.setState({ results: Object.values(res.data) }))
@@ -140,7 +141,13 @@ class App extends React.Component {
       .catch(err => console.log(err));
 
   }
-
+  toDollars =(amount) => {
+    let formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'usd',
+    });
+    return(formatter.format(amount));
+  }
 
   handleSelectChange = event => {
     alert("new handle select change");
@@ -161,12 +168,11 @@ class App extends React.Component {
     this.setState({
       labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth,
     }); */
-    //this.get_allhomes();
+    //this.get_all_homes();
   }
   componentWillReceiveProps(nextProps) {
     // you can also check props with current version
     // and set conditions to update state or not
-    //this.updateState();
     //alert("propchang2" + JSON.stringify(nextProps));
     //alert("willget" + JSON.stringify(nextProps))
     //alert("willrecprops min,max" + this.props.min + this.props.max);
@@ -187,6 +193,7 @@ class App extends React.Component {
     //console.log("type:" + typeof this.handle_init_screen);
  // this is a function here...   alert("app.p" + typeof   this.props.onMinMaxChange);
  //alert("app says" + typeof this.props.onUserChange)
+   //alert("feeding simpleselect in  app lot=" + this.props.lot_size + "sq " + this.props.square_feet  )
     return (
       <div className = "container">`
           <div className="row">
@@ -198,10 +205,9 @@ class App extends React.Component {
           <SignUp init={true} send_data={this.handle_init_screen} is_logged_in={this.state.is_logged_in} onUserChange={this.props.onUserChange} />
           }
           { !this.state.is_loggged_in && 
-          <SignIn handle_update_user={this.update_login_user} is_logged_in={this.state.is_logged_in} />
+          <SignIn handle_update_user={this.update_login_user} is_logged_in={this.state.is_logged_in} onUserChange={this.props.onUserChange} />
           }
           </div>
-
 
           <Header/>
           <span>Total Matches:{this.state.housecount}</span> 
@@ -209,7 +215,7 @@ class App extends React.Component {
               beds={this.props.beds}
               baths={this.props.baths}
               square_feet={this.props.square_feet}
-              acres={this.props.acres}
+              lot_size={this.props.lot_size}
           
           />
 
@@ -225,14 +231,29 @@ class App extends React.Component {
               id0={house[0].id}
               image_url0={house[0].image_url}
               address0={house[0].address}
+              price0={this.toDollars(house[0].price)}
+              beds0={house[0].beds}
+              baths0={house[0].baths}
+              square_feet0={house[0].square_feet}
+              lot_size0={house[0].lot_size}
 
               id1={house[1] && house[1].id}
               image_url1={house[1] && house[1].image_url}
               address1={house[1] && house[1].address}
+              price1={house[1] && this.toDollars(house[1].price)}
+              beds1={house[1] && house[1].beds}
+              baths1={house[1] && house[1].baths}
+              square_feet1={house[1] && house[1].square_feet}
+              lot_size1={house[1] && house[1].lot_size}
 
               id2={house[2] && house[2].id}
               image_url2={house[2] && house[2].image_url}
               address2={house[2] && house[2].address}
+              price2={house[2] && this.toDollars(house[2].price)}
+              beds2={house[2] && house[2].beds}
+              baths2={house[2] && house[2].baths}
+              square_feet2={house[2] && house[2].square_feet}
+              lot_size2={house[2] && house[2].lot_size}
             />
           ))}
         </div>

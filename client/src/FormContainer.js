@@ -25,11 +25,31 @@ class FormContainer extends Component {
   handleSubmit(event) {
     event.preventDefault();
     alert(  "post to lead:" 
-      + "lead email:"  + this.state.formControls.email.value
-      + "  Agent:" + this.props.agent_id
-      + "  PROPID:"  + this.props.property_id
-      + "  addr:" + this.props.address
-          );
+      + "lead email:"  + typeof this.state.formControls.email.value
+      + "  Agent:" + typeof this.props.agent_id
+      + "  PROPID:"  + typeof this.props.property_id
+      + "  addr:" + typeof this.props.address); 
+      alert("  PROPID:"  + parseInt(this.props.property_id))
+      // this.props.agent_id,
+      //parseInt(this.props.property_id),
+
+      Axios.post('/post_lead', {
+  
+      "property:"  : "2" , 
+      "agent:"  : "1"  ,
+      "email" :  this.state.formControls.email.value,
+      "name"  :  this.state.formControls.name.value,
+      "phone" :  this.state.formControls.phone.value,
+      "address" : this.props.address,
+  
+      })
+        .then(function (response) {
+          //resultElement.innerHTML = generateSuccessHTMLOutput(response);
+        })
+        .catch(function (error) {
+          //resultElement.innerHTML = generateErrorHTMLOutput(error);
+        });
+  
     /*
     fetch('/api/form-submit-url', {
       method: 'POST',

@@ -31,23 +31,33 @@ class Index extends React.Component {
    state = {
      indexState : 0,
      min: 0,
-     max: 100000,
+     max: 999999999,
      beds: 1,
      baths: 1,
-     square_feet: 1,
-     acres: 1,
+     square_feet: 0,
+     lot_size: 0,
      // this is the list of homes matching criteria
      results: [],
      // this is login info
      user_record: []
    };
-
+   constructor() {
+         super();
+         this.once = 0;
+   }
    query_homes() {
      //alert("query state:" + JSON.stringify(this.state));
      // try moving props into state here, but for now use this
     //console.log("main query is here" + this.state.min);
     //console.log("bbbbbbbbbbbbbbbbbbbbbbbbeds, user_rec:" + this.state.beds + "  " + JSON.stringify(this.state.user_record));
-    Axios.get("/some_homes", { params: { min: this.state.min, max: this.state.max } })
+    Axios.get("/some_homes", { params: { 
+          min: this.state.min,
+          max: this.state.max ,
+          beds: this.state.beds, 
+          baths: this.state.baths ,
+          lot_size: this.state.lot_size ,
+          square_feet: this.state.square_feet,
+          } })
       .then(res => this.setState({ results: Object.values(res.data) }))
       .catch(err => console.log(err));  
 
@@ -56,30 +66,37 @@ class Index extends React.Component {
      this.setState({indexState : this.state.indexState + 1});
    }
    handleUserChange = (user_record) => {
-    alert("user change" + JSON.stringify(user_record));
     this.setState({   ...this.state.user_record, user_record });
    }
 
    handleHomeList = (results) => {
-    alert("handleHomelist homeget change" + JSON.stringify(this.state));
    this.setState({   ...this.state.results, results });
    }
 
 
-   handleGlobalChange = event => {
+   handleSelectChange = event => {
      //alert("global");
-    //alert("handleGlobalChange");
+    //alert("handleSelectChange");
     //this.setState({ [event.target.name]: event.target.value });
     this.setState({ [event.target.name]: event.target.value }, this.query_homes);
     //this.setState({ [event.target.name]: event.target.value });
     //this.setState({ [event_name]: event_value }, this.get_some_homes);
     //console.log("mmmmmmmmmmmmmaxis:" + this.state.max);
-    //this.query_homes();
     //get_some_homes()
+    //var ev = new Event('input', { bubbles: true});
+    //ev.simulated = true;
+    //element.value = 'Something new';
+   // element.dispatchEvent(ev);
+
+
     //console.log("ChaNgE in component:" + event.target.name + " " + event.target.value);
   };
   render() 
 {
+    if (this.once < 3) {  // trick system into displaying initially
+       this.once++;
+       this.query_homes();
+    } 
     //console.log("falid fn? "+ typeof this.update_user)
 //    const { classes } = this.props;
     //console.log("main Rend" + JSON.stringify(this.state.show_init));
@@ -89,7 +106,7 @@ class Index extends React.Component {
     <div>
       <Switch>
         <Route exact path="/" render={(routeProps) => (<App {...routeProps} {...this.state} 
-            onMinMaxChange={this.handleGlobalChange} 
+            onMinMaxChange={this.handleSelectChange} 
             onUserChange={this.handleUserChange}
             handleHomeList={this.handleHomeList}
          />)} />
@@ -123,7 +140,7 @@ ReactDOM.render(<Index />, document.getElementById("root"));
       <hr />
       <Switch>
         <Route exact path="/" render={(routeProps) => (<App {...routeProps} {...this.state} 
-            onMinMaxChange={this.handleGlobalChange} 
+            onMinMaxChange={this.handleSelectChange} 
             onUserChange={this.handleUserChange}
          />)} />
         <Route path="/SingleHouse" component={SingleHouse} />

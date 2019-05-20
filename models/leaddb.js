@@ -3,8 +3,12 @@ module.exports = function(sequelize, Sequelize) {
 
 	var Lead = sequelize.define('lead', {
 		id: { autoIncrement: true, primaryKey: true, type: Sequelize.INTEGER},
-		user_id: { type: Sequelize.INTEGER,notEmpty: true},
-		gender_opt: {type:Sequelize.TEXT}
+		email: {type:Sequelize.TEXT},
+		name: {type:Sequelize.TEXT},
+		phone: {type:Sequelize.TEXT},
+		address: {type:Sequelize.TEXT},
+		agent_id: { type: Sequelize.INTEGER},
+		property_id: { type: Sequelize.INTEGER},
 
 
 

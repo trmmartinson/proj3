@@ -36,7 +36,7 @@ class SingleHouse extends React.Component {
   //<img  src={"/images/" + {this.state.results.image_url} } alt="house" height="250" width="250"></img>
 
   render() {
-    console.log( "yuk" + JSON.stringify(this.state.house));
+    //alert( "singlehouse.js :" + JSON.stringify(this.state.house));
 
     if (!this.state.house.image_url)
       return null;
@@ -47,6 +47,7 @@ class SingleHouse extends React.Component {
         <div className='row'>
           <div className="sm-5">
             <img src={"/images/" + this.state.house.image_url} alt="house" height="400" width="650"></img>
+            <div>one</div>
           </div>
           <div className="sm-1">
            </div>

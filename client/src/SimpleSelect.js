@@ -46,6 +46,7 @@ class SimpleSelect extends React.Component {
   };
 
   render() {
+    //alert("simple select fed :" + this.props.beds + "feet" + this.props.square_feet + "lot zie" + this.props.lot_size );
     const { classes } = this.props;
     //console.log("component props" + JSON.stringify(this.props));
 
@@ -72,9 +73,21 @@ class SimpleSelect extends React.Component {
               />
             }
           >
+   
+
             <MenuItem value={0}>$0</MenuItem>
-            <MenuItem value={50000}>$50,000 </MenuItem>
-            <MenuItem value={10000}>$100,000</MenuItem>
+            <MenuItem value={50000}>$50,000</MenuItem>
+            <MenuItem value={100000}>$100,000 </MenuItem>
+            <MenuItem value={200000}>$200,000</MenuItem>
+            <MenuItem value={250000}>250,000</MenuItem>
+            <MenuItem value={350000}>$350,000</MenuItem>
+            <MenuItem value={400000}>$400,000</MenuItem>
+            <MenuItem value={450000}>$450,000</MenuItem>
+            <MenuItem value={600000}>$600,000</MenuItem>
+            <MenuItem value={1000000}>$1,000,000</MenuItem>
+            <MenuItem value={2000000}>$2,000,000</MenuItem>
+
+
           </Select>
         </FormControl>
 
@@ -101,13 +114,17 @@ class SimpleSelect extends React.Component {
               />
             }
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
             <MenuItem value={50000}>$50,000</MenuItem>
             <MenuItem value={100000}>$100,000 </MenuItem>
-            <MenuItem value={150000}>$150,000</MenuItem>
+            <MenuItem value={200000}>$200,000</MenuItem>
+            <MenuItem value={250000}>250,000</MenuItem>
+            <MenuItem value={350000}>$350,000</MenuItem>
+            <MenuItem value={400000}>$400,000</MenuItem>
+            <MenuItem value={450000}>$450,000</MenuItem>
+            <MenuItem value={600000}>$600,000</MenuItem>
             <MenuItem value={1000000}>$1,000,000</MenuItem>
+            <MenuItem value={2000000}>$2,000,000</MenuItem>
+            <MenuItem value={999999999}>All</MenuItem>
           </Select>
         </FormControl>
 
@@ -131,9 +148,6 @@ class SimpleSelect extends React.Component {
               />
             }
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
             <MenuItem value={1}>1+</MenuItem>
             <MenuItem value={2}>2+</MenuItem>
             <MenuItem value={3}>3+</MenuItem>
@@ -165,14 +179,11 @@ class SimpleSelect extends React.Component {
               />
             }
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
             <MenuItem value={1}>1+</MenuItem>
             <MenuItem value={2}>2+</MenuItem>
             <MenuItem value={3}>3+</MenuItem>
             <MenuItem value={4}>4+</MenuItem>
-            <MenuItem value={4}>5+</MenuItem>
+            <MenuItem value={5}>5+</MenuItem>
           </Select>
         </FormControl>
 
@@ -196,9 +207,7 @@ class SimpleSelect extends React.Component {
               />
             }
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
+            <MenuItem value={0}>All</MenuItem>
             <MenuItem value={500}>500+</MenuItem>
             <MenuItem value={1000}>1000+</MenuItem>
             <MenuItem value={1500}>1500+</MenuItem>
@@ -214,29 +223,32 @@ class SimpleSelect extends React.Component {
             ref={ref => {
               this.InputLabelRef = ref;
             }}
-            htmlFor="outlined-acres-simple"
+            htmlFor="outlined-lot_size-simple"
           >
             Acres
           </InputLabel>
           <Select
-            value={this.props.acres}
+            value={this.props.lot_size}
             onChange={this.props.onMinMaxChange}
             input={
               <OutlinedInput
                 labelWidth={this.state.labelWidth}
-                name="acres"
-                id="outlined-acres-simple"
+                name="lot_size"
+                id="outlined-lot_size-simple"
               />
             }
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
+            <MenuItem value={0}>0+</MenuItem>
+            <MenuItem value={.25}>.25+</MenuItem>
+            <MenuItem value={.5}>.5+</MenuItem>
             <MenuItem value={1}>1+</MenuItem>
             <MenuItem value={2}>2+</MenuItem>
             <MenuItem value={3}>3+</MenuItem>
             <MenuItem value={4}>4+</MenuItem>
-            <MenuItem value={4}>5+</MenuItem>
+            <MenuItem value={5}>5+</MenuItem>
+            <MenuItem value={10}>10+</MenuItem>
+            <MenuItem value={20}>20+</MenuItem>
+            <MenuItem value={50}>50+</MenuItem>
           </Select>
         </FormControl>
 

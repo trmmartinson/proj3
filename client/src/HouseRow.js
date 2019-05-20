@@ -32,8 +32,10 @@ import House from './House.js';
 
 */
 function HouseRow(props) {
+  //alert("zzhouserowprops" + JSON.stringify(props))
   //console.log("ZZZZZZZZZZZZZZZZZZZhouserow" + props.image_url0 + "CLicker:" + typeof props.handleClick);
   return (
+
     <div className="container black_box">
       <div className="row">
       </div>
@@ -45,6 +47,7 @@ function HouseRow(props) {
                 id = {props.id0}
                 image_url = {props.image_url0}
                 address = {props.address0}
+                price = {props.price0}
           />
         <House 
                 clicker={props.clicker}
@@ -52,6 +55,7 @@ function HouseRow(props) {
                 id = {props.id1}
                 image_url = {props.image_url1}
                 address = {props.address1}
+                price = {props.price1}
           />
         <House 
                 clicker={props.clicker}
@@ -59,6 +63,7 @@ function HouseRow(props) {
                 id = {props.id2}
                 image_url = {props.image_url2}
                 address = {props.address2}
+                price = {props.price2}
           />
 
 
