@@ -122,7 +122,7 @@ export default class SignUp extends React.Component {
               onChange={this.handle_sign_up_password}
               id="sign_up_password"
               label="Password"
-              type="sign_up_password"
+              type="password"
               fullWidth
             />
 

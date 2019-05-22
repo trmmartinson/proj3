@@ -1,3 +1,13 @@
+
+Wed:
+   1. install latest changes.  pw fix and lead create fix
+     -dont forget config.json and index.js that have pw/info
+   2. test superficially   on LAPTOP
+        create user, login, start email , send lead
+   3. do dox:q
+
+
+
 0. get linux running
    a. do this on computer using another port first
    b. install mysql on laptop
