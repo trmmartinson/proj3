@@ -157,6 +157,7 @@ app.get('/signin', (req, res) => {
    .then(user => { 
         console.log("pwhere1" +  user.password);
         console.log("pwhere2" + req.query.password );
+        /* this does not belong here
         spawn('sh', ['maillead.sh',
         //quoter('firstname lastname'),
         req.body.name,
@@ -172,7 +173,7 @@ app.get('/signin', (req, res) => {
       ], {
           cwd: '/usr/local/bin'
         });
-
+  */
       if(bcrypt.compareSync(req.query.password, user.password)) {
         console.log("match");
         res.json(user);
