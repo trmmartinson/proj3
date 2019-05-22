@@ -2,6 +2,7 @@ import React from "react";
 
 function House(props) {
   //console.log("imageuril in house" + props.image_url + props.clicker);
+  
   if (!props.image_url) {
     return null;
   }

@@ -48,6 +48,7 @@ function HouseRow(props) {
                 image_url = {props.image_url0}
                 address = {props.address0}
                 price = {props.price0}
+                user_record = {props.user_record}
           />
         <House 
                 clicker={props.clicker}

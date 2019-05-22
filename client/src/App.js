@@ -56,7 +56,7 @@ class App extends React.Component {
 
   get_all_homes = (query) => {
     //console.log("allhomeq start");
-    alert("allhomesget");
+    alert(" obsolete allhomesget");
     Axios.get("/all_homes")
       .then(res => this.props.handleHomeList({ results: Object.values(res.data) }))
       //.then(res => this.setState({ results: Object.values(res.data) }))
@@ -90,11 +90,24 @@ class App extends React.Component {
     //window.open(url, '_blank');
     //      console.log( "zzvview" + JSON.stringify(this.state.results[num - 1].image_url));
 
-
+//alert("app.p state:" + JSON.stringify(this.state))
+//alert("app.p props:" + JSON.stringify(this.props))
+//alert("app.p user:" + JSON.stringify(this.props.user_record))
+      // was just state: { detail: num }
+    if(this.props.user_record != null)
     this.props.history.push({
       pathname: '/SingleHouse',
-      state: { detail: num }
+      state: { detail: num, user_name : this.props.user_record.sign_up_name,
+               email : this.props.user_record.sign_up_email,
+       }
     })
+    else
+    this.props.history.push({
+      pathname: '/SingleHouse',
+      state: { detail: num
+       }
+    })
+
 
     //this.props.history.push('aved/1');
     //alert("view" + this.state.results[num].image_url);
@@ -102,15 +115,14 @@ class App extends React.Component {
 
   save = (num) => {
     alert("if yousee this save should be unused?")
-    let save_stuff = {
+    /*let save_stuff = {
       title: this.state.results[num].volumeInfo.title,
       authors: this.state.results[num].volumeInfo.authors,
       description: this.state.results[num].volumeInfo.description,
       //thumbnail   has null problem?
       previewLink: this.state.results[num].volumeInfo.previewLink,
 
-    }
-    alert(JSON.stringify(save_stuff));
+    } */
   }
   onInputChange = (event) => {
     //console.log("Search changed ..." + event.target.value)
@@ -173,9 +185,6 @@ class App extends React.Component {
   componentWillReceiveProps(nextProps) {
     // you can also check props with current version
     // and set conditions to update state or not
-    //alert("propchang2" + JSON.stringify(nextProps));
-    //alert("willget" + JSON.stringify(nextProps))
-    //alert("willrecprops min,max" + this.props.min + this.props.max);
     /*
     this.setState({
       results: this.props.results,
@@ -185,15 +194,11 @@ class App extends React.Component {
 }
   //<SimpleSelect onChange={(evt, key, payload)=>console.log("---payload--" + payload)}     />
   render() {
-    //alert("app home list:" + typeof  + this.props.handleHomeList)
-    //alert("props in app  "+ JSON.stringify(this.props.min  + "max:" + this.props.max)) ;
     //needed by old way i was doing Select? 
 //    const { classes } = this.props;
     //console.log("main Rend" + JSON.stringify(this.state.show_init));
-    //console.log("type:" + typeof this.handle_init_screen);
- // this is a function here...   alert("app.p" + typeof   this.props.onMinMaxChange);
- //alert("app says" + typeof this.props.onUserChange)
-   //alert("feeding simpleselect in  app lot=" + this.props.lot_size + "sq " + this.props.square_feet  )
+    //alert(typeof this.props.user_record)
+          //<span>Total Matches:{this.state.housecount}</span> 
     return (
       <div className = "container">`
           <div className="row">
@@ -201,16 +206,15 @@ class App extends React.Component {
           <Logo />
           </div>
           <div className = "col"></div>
-          { !this.state.is_loggged_in && 
+          { !this.props.user_record && 
           <SignUp init={true} send_data={this.handle_init_screen} is_logged_in={this.state.is_logged_in} onUserChange={this.props.onUserChange} />
           }
-          { !this.state.is_loggged_in && 
-          <SignIn handle_update_user={this.update_login_user} is_logged_in={this.state.is_logged_in} onUserChange={this.props.onUserChange} />
+          { !this.props.user_record && 
+          <SignIn init={true} handle_update_user={this.update_login_user} is_logged_in={this.state.is_logged_in} onUserChange={this.props.onUserChange} />
           }
           </div>
 
           <Header/>
-          <span>Total Matches:{this.state.housecount}</span> 
           <SimpleSelect onMinMaxChange={this.props.onMinMaxChange} max={this.props.max} min={this.props.min}
               beds={this.props.beds}
               baths={this.props.baths}

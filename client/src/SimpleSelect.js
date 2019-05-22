@@ -79,7 +79,7 @@ class SimpleSelect extends React.Component {
             <MenuItem value={50000}>$50,000</MenuItem>
             <MenuItem value={100000}>$100,000 </MenuItem>
             <MenuItem value={200000}>$200,000</MenuItem>
-            <MenuItem value={250000}>250,000</MenuItem>
+            <MenuItem value={250000}>$250,000</MenuItem>
             <MenuItem value={350000}>$350,000</MenuItem>
             <MenuItem value={400000}>$400,000</MenuItem>
             <MenuItem value={450000}>$450,000</MenuItem>
@@ -117,7 +117,7 @@ class SimpleSelect extends React.Component {
             <MenuItem value={50000}>$50,000</MenuItem>
             <MenuItem value={100000}>$100,000 </MenuItem>
             <MenuItem value={200000}>$200,000</MenuItem>
-            <MenuItem value={250000}>250,000</MenuItem>
+            <MenuItem value={250000}>$250,000</MenuItem>
             <MenuItem value={350000}>$350,000</MenuItem>
             <MenuItem value={400000}>$400,000</MenuItem>
             <MenuItem value={450000}>$450,000</MenuItem>

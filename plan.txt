@@ -1,8 +1,33 @@
+0. get linux running
+   a. do this on computer using another port first
+   b. install mysql on laptop
+   c. install program and test
+1. presentation
+   a. problem people looking for homes, no it is agents getting leads
+   b. tables
+   c. libraries
+     -lodash, bcrypt, linux.sh, material ui
+   d. demo
+
+2. remove colors
+3. fix for on screen 2
+4. hide login
+
+
+
+new 0: get running on laptop
 monday:
 -test loading this on vmware laptop + test mail
+-get bcrypt working
+-cleanup
+   -make less ugly
+     -change to material inputs on 2'nd screen
+
+2nd pass:
+   -change tab header title + flavicon?
 
 0)  put logo on top of all screens
-
+0.5) push email and name down to form
 #1) improve selectors 
    selectors -  put choices text in + integrate w/query
    -beds

@@ -39,7 +39,7 @@ class Index extends React.Component {
      // this is the list of homes matching criteria
      results: [],
      // this is login info
-     user_record: []
+     user_record: null,
    };
    constructor() {
          super();
