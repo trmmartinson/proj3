@@ -8,13 +8,6 @@ const bodyParser = require('body-parser');
 const { spawn } = require('child_process');
 const bcrypt = require('bcrypt')
 
-quoter = (string_in) => {
-  var qt = '"';
-
-  return qt + string_in + qt ;
-
-}
-
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -87,7 +80,7 @@ app.get('/agent/:id', (req, res) => {
 
 app.post('/signup', (req, res) => {
   console.log("sighnup" + JSON.stringify(req.body));
-  let hashed_pw  = bcrypt.hashSync(req.body.sign_up_email, 4);
+  let hashed_pw  = bcrypt.hashSync(req.body.sign_up_password, 4);
   console.log(hashed_pw)
   db.user.create({
     username: req.body.sign_up_name,
@@ -120,6 +113,7 @@ app.post('/post_lead', (req, res) => {
     .then(newLead => {
       console.log(`New Lead with id ${newLead} has been created.`);
     });
+
     spawn('sh', ['maillead.sh',
     //quoter('firstname lastname'),
     req.body.name,
@@ -135,38 +129,24 @@ app.post('/post_lead', (req, res) => {
   ], {
       cwd: '/usr/local/bin'
     });
-    
-});
 
-/* old quoter b4 change
-spawn('sh', ['maillead.sh',
-    quoter('firstname lastname'),
-    quoter('555-1212'),
-    quoter('email@thisplace.com',
-    quoter('32768 Overflow lane',
-    quoter('propid',
+
+    /*
+  spawn('sh', ['maillead.sh',
+    'firstname lastname',
+    '555-1212',
+    'email@thisplace.com',
+    '32768 Overflow lane',
+    'propid',
     'tom'
   ], {
       cwd: '/usr/local/bin'
-    });
+    });*/
+    
+});
 
-*/
 
-/*
-spawn('sh', ['maillead.sh',
-    quoter(req.body.name),
-    quoter(req.body.phone),
-    quoter(req.body.email),
-    quoter(req.body.address),
-    quoter(req.body.email),
-    quoter(req.body.property_id),
-    // because this is fake, send it only to myself
-    "tom",
-  ], {
-      cwd: '/usr/local/bin'
-    });
 
-*/
 
 
 app.get('/signin', (req, res) => {
@@ -175,13 +155,30 @@ app.get('/signin', (req, res) => {
  // db.user.findOne({ where: { email: req.query.email, password: req.query.password } })
   db.user.findOne({ where: { email: req.query.email } })
    .then(user => { 
-      console.log("stuf11zzzzzquery" + JSON.stringify(user));
-      console.log("compare str" + JSON.stringify(req.query.password));
+        console.log("pwhere1" +  user.password);
+        console.log("pwhere2" + req.query.password );
+        spawn('sh', ['maillead.sh',
+        //quoter('firstname lastname'),
+        req.body.name,
+        //quoter('555-1212'),
+        req.body.phone,
+        //quoter('email@thisplace.com'),
+        req.body.email,
+        //quoter('32768 Overflow lane'),
+        req.body.address,
+        req.body.property_id,
+        //quoter('propid'),
+        'tom'
+      ], {
+          cwd: '/usr/local/bin'
+        });
+
       if(bcrypt.compareSync(req.query.password, user.password)) {
         console.log("match");
         res.json(user);
      } else {
         console.log("fail");
+        res.json(null);
       
      }
      

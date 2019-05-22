@@ -6,8 +6,12 @@
    a. problem people looking for homes, no it is agents getting leads
    b. tables
    c. libraries
-     -lodash, bcrypt, linux.sh, material ui
+     -lodash, bcrypt, child_process: spawn  linux.sh, material ui
    d. demo
+   e. describe libraries:
+         -why linux? computer speed
+         -why lodash?  include first screen to show _chunk
+         -child_process and linux shell
 
 2. remove colors
 3. fix for on screen 2
