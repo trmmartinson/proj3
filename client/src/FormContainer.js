@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 class FormContainer extends Component {
 
-
-
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,8 +22,6 @@ class FormContainer extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    // this.props.agent_id,
-    //parseInt(this.props.property_id),
 
     Axios.post('/post_lead', {
 
@@ -44,8 +40,6 @@ class FormContainer extends Component {
         //resultElement.innerHTML = generateErrorHTMLOutput(error);
       });
 
-    /*
-    }); */
   }
   componentDidMount() {
     if (typeof this.props.user_name != "undefined")
@@ -53,14 +47,12 @@ class FormContainer extends Component {
       this.setState(state => (state.formControls.email.value = this.props.email));
     Axios.get("/agent/" + this.props.agent_id)
       .then(res => {
-        //console.log("res" + res.data.id);
         const agent = res.data;
         this.setState({
           ...this.state, agent
 
         });
       })
-    //if (typeof this.state.user_record == "undefined")
   }
   changeHandler = event => {
 
@@ -77,13 +69,9 @@ class FormContainer extends Component {
       }
     });
   }
-  //                  <img src={"/images/" + this.state.house.image_url} alt="house" height="400" width="650"></img>
-  //<img src={"/images/farley.jpg"} alt="agent" height="200" width="294" padding="10"></img>
   render() {
-    //alert("Form.js" + JSON.stringify(this.props))
     if (!this.state.agent)
       return null;
-    ///console.log("agent at rend" + this.state.agent);
     return (
       <form className="container black_box" onSubmit={this.handleSubmit} >
         <h3>Contact {this.state.agent.name}</h3>

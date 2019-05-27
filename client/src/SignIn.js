@@ -4,7 +4,6 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-//import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Divider from '@material-ui/core/Divider';
 import Axios from "axios";
@@ -18,7 +17,6 @@ export default class SignIn extends React.Component {
     email: "",
 
   };
-
   constructor() {
     super();
     this.once = false;
@@ -29,7 +27,6 @@ export default class SignIn extends React.Component {
     });
   }
   handle_password = (e) => {
-    //console.log("pw:" + e.target.value);
     this.setState({
       password: e.target.value
     });
@@ -41,8 +38,7 @@ export default class SignIn extends React.Component {
     });
   }
   validate_input = () => {
-    // what is happening to this in the update below?
-
+   // todo: actually validate
     Axios.get('/signin', {
       params: {
         email: this.state.email,
@@ -64,21 +60,8 @@ export default class SignIn extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-
-
-
-
-
   }
 
-  /*  update_user(user ) {
-      this.setState(prevState => ({
-        jasper: {
-            ...prevState.jasper,
-            name: 'something'
-        }
-    }))
-    } */
   oneOpen = () => {
     this.setState({ open: true });
   }
@@ -90,7 +73,6 @@ export default class SignIn extends React.Component {
     this.setState({ open: false });
   };
   render() {
-    //alert("sign in of " + typeof this.props.onUserChange);
     if (this.props.is_logged_in)
       return null;
     return (
@@ -126,8 +108,6 @@ export default class SignIn extends React.Component {
               fullWidth
             />
 
-
-
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
@@ -142,30 +122,3 @@ export default class SignIn extends React.Component {
     );
   }
 }
-/* pre es6 coe
- alert(typeof this.props.onUserChange);
-       let callthis = this.update_user;
-       Axios.get('/signin', {
-        params: {
-          email: this.state.email,
-          password: this.state.password,
-        }
-      })
-      .then(function (response) {
-        console.log( "userback" + JSON.stringify(response.data));
-        console.log( response.data.username);
-        console.log('porezzzz' + response.data.email);
-        *this.update_user(); *
-        alert("thing2" + this);
-
-        callthis.onUserChange({
-          "sign_up_name":  "response.data.username",
-          "sign_up_email": "response.data.email",
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-      this.handleClose();
-
-*/

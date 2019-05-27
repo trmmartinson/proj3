@@ -6,23 +6,11 @@ import HouseRow from './HouseRow.js';
 import Header from './Header.js';
 import SimpleSelect from './SimpleSelect.js';
 import InitScreen from './InitScreen.js';
-//import FormDialog from './FormDialog.js';
-
 import SignUp from './SignUp.js';
 import SignIn from './SignIn.js';
 import Logo from './Logo.js';
-
-//import SimpleDialog from './SimpleDialog.js';
-//import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-//import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-/* 
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl'; 
-import Select from '@material-ui/core/Select'; */
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -51,17 +39,13 @@ class App extends React.Component {
       user: "",
       show_init: false // for debug mainly
     };
-//    debugger;
   }
 
   get_all_homes = (query) => {
-    //console.log("allhomeq start");
     alert(" obsolete allhomesget");
     Axios.get("/all_homes")
       .then(res => this.props.handleHomeList({ results: Object.values(res.data) }))
-      //.then(res => this.setState({ results: Object.values(res.data) }))
       .catch(err => console.log(err));
-    //console.log("allhomeq end");
   };
 
 
@@ -78,22 +62,12 @@ class App extends React.Component {
       is_logged_in : true,
 
     });
-    //console.log("update_user setstate:" + this.state.user);
 
   }
   test(inut) {
       alert("test called  with" + inut);
   } 
   view = (num) => {
-    //alert(this.state.results[num].volumeInfo.previewLink    );
-    //let url = this.state.results[num].volumeInfo.previewLink;
-    //window.open(url, '_blank');
-    //      console.log( "zzvview" + JSON.stringify(this.state.results[num - 1].image_url));
-
-//alert("app.p state:" + JSON.stringify(this.state))
-//alert("app.p props:" + JSON.stringify(this.props))
-//alert("app.p user:" + JSON.stringify(this.props.user_record))
-      // was just state: { detail: num }
     if(this.props.user_record != null)
     this.props.history.push({
       pathname: '/SingleHouse',
@@ -107,51 +81,17 @@ class App extends React.Component {
       state: { detail: num
        }
     })
-
-
-    //this.props.history.push('aved/1');
-    //alert("view" + this.state.results[num].image_url);
   }
 
-  save = (num) => {
-    alert("if yousee this save should be unused?")
-    /*let save_stuff = {
-      title: this.state.results[num].volumeInfo.title,
-      authors: this.state.results[num].volumeInfo.authors,
-      description: this.state.results[num].volumeInfo.description,
-      //thumbnail   has null problem?
-      previewLink: this.state.results[num].volumeInfo.previewLink,
-
-    } */
-  }
-  onInputChange = (event) => {
-    //console.log("Search changed ..." + event.target.value)
-    alert("if you see this figure out why before you remove it local Search changed ..." + event.target.value)
-    /*
-    if (event.target.value) {
-        this.setState({searchString: event.target.value})
-    } else {
-        this.setState({searchString: ''})
-    } */
-  }
-  handle_init_screen = (stuff) => {
-    //console.log("fuunction handle init " + stuff);
-
-  }
   handleSelectChangelow = (event_name, event_value) => {
-    //gets events from change tabs
-    alert("low i finsidhed")
     this.setState({ [event_name]: event_value }, this.get_some_homes);
   };
 
   get_some_homes() {
     alert("obsolete get homes ");
-    //console.log("min is here" + this.props.min);
     Axios.get("/some_homes", { params: { min: this.props.min, max: this.props.max } })
-      //.then(res => this.setState({ results: Object.values(res.data) }))
       .then(res => this.props.handleHomeList({ results: Object.values(res.data) }))
       .catch(err => console.log(err));
-
   }
   toDollars =(amount) => {
     let formatter = new Intl.NumberFormat('en-US', {
@@ -173,32 +113,7 @@ class App extends React.Component {
     if (the_button.startsWith("view"))
       this.view(num);
   }
-  //get rid of didmount after testing
-  componentDidMount() {
-    //console.log("didmount");
-    /*
-    this.setState({
-      labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth,
-    }); */
-    //this.get_all_homes();
-  }
-  componentWillReceiveProps(nextProps) {
-    // you can also check props with current version
-    // and set conditions to update state or not
-    /*
-    this.setState({
-      results: this.props.results,
-
-    }); */
-    //this.get_some_homes();
-}
-  //<SimpleSelect onChange={(evt, key, payload)=>console.log("---payload--" + payload)}     />
   render() {
-    //needed by old way i was doing Select? 
-//    const { classes } = this.props;
-    //console.log("main Rend" + JSON.stringify(this.state.show_init));
-    //alert(typeof this.props.user_record)
-          //<span>Total Matches:{this.state.housecount}</span> 
     return (
       <div className = "container">`
           <div className="row">
@@ -220,12 +135,7 @@ class App extends React.Component {
               baths={this.props.baths}
               square_feet={this.props.square_feet}
               lot_size={this.props.lot_size}
-          
           />
-
-
-
-
         <InitScreen show_init_screen={this.state.show_init} send_data={this.handle_init_screen} />
         <div className="">
           {_.chunk(this.props.results, 3).map((house, idx) => (
@@ -273,4 +183,3 @@ App.propTypes = {
 export default withStyles(styles)(App);
 
 
-//export default App;

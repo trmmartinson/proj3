@@ -6,11 +6,6 @@ module.exports = function(sequelize, Sequelize) {
 		agent_id: {type:Sequelize.INTEGER},
 		user_id: {type:Sequelize.INTEGER},
 		house_id: {type:Sequelize.INTEGER}
-              
-
-
-
-
 
 });
 console.log("homes---------------------");

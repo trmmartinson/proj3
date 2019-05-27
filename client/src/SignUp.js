@@ -38,17 +38,11 @@ export default class SignUp extends React.Component {
     });
   }
   validate_input = () => {
-    //alert("store sign_up_name" + this.state.sign_up_name);
     this.props.onUserChange({
       "sign_up_name": this.state.sign_up_name,
       "sign_up_email": this.state.sign_up_email,
     });
 
-    /* this.props.send_data({ 
-         "name": this.state.sign_up_name,
-         "sign_up_email" : this.state.sign_up_email,
-         "sign_up_password" : this.state.sign_up_password,
-        } ); */
     console.log("post singup");
     Axios.post('/signup', {
       "sign_up_name": this.state.sign_up_name,
@@ -79,7 +73,6 @@ export default class SignUp extends React.Component {
     this.setState({ open: false });
   };
   render() {
-    //alert("sign up:type of " + typeof this.props.onUserChange);
     if (this.props.is_logged_in)
       return null;
     return (
@@ -125,8 +118,6 @@ export default class SignUp extends React.Component {
               type="password"
               fullWidth
             />
-
-
 
           </DialogContent>
           <DialogActions>

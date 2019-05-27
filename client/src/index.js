@@ -10,23 +10,6 @@ import {
 import App from "./App";
 import SingleHouse from "./SingleHouse";
 import Notfound from "./notfound";
-//import { Button } from "@material-ui/core";
-
-/*const routing = (
-  <Router>
-    <div>
-      <Switch>
-        <Route exact path="/" component={App} />
-        <Route path="/SingleHouse" component={SingleHouse} />
-        <Route component={Notfound} />
-      </Switch>
-    </div>
-  </Router>
-);
-ReactDOM.render(routing, document.getElementById("root")); */
-//
-//  i need a way to inform app of a change in state.results.*
-//
 class Index extends React.Component {
    state = {
      indexState : 0,
@@ -46,10 +29,6 @@ class Index extends React.Component {
          this.once = 0;
    }
    query_homes() {
-     //alert("query state:" + JSON.stringify(this.state));
-     // try moving props into state here, but for now use this
-    //console.log("main query is here" + this.state.min);
-    //console.log("bbbbbbbbbbbbbbbbbbbbbbbbeds, user_rec:" + this.state.beds + "  " + JSON.stringify(this.state.user_record));
     Axios.get("/some_homes", { params: { 
           min: this.state.min,
           max: this.state.max ,
@@ -60,7 +39,6 @@ class Index extends React.Component {
           } })
       .then(res => this.setState({ results: Object.values(res.data) }))
       .catch(err => console.log(err));  
-
   }
    addState = () => {
      this.setState({indexState : this.state.indexState + 1});
@@ -75,21 +53,7 @@ class Index extends React.Component {
 
 
    handleSelectChange = event => {
-     //alert("global");
-    //alert("handleSelectChange");
-    //this.setState({ [event.target.name]: event.target.value });
     this.setState({ [event.target.name]: event.target.value }, this.query_homes);
-    //this.setState({ [event.target.name]: event.target.value });
-    //this.setState({ [event_name]: event_value }, this.get_some_homes);
-    //console.log("mmmmmmmmmmmmmaxis:" + this.state.max);
-    //get_some_homes()
-    //var ev = new Event('input', { bubbles: true});
-    //ev.simulated = true;
-    //element.value = 'Something new';
-   // element.dispatchEvent(ev);
-
-
-    //console.log("ChaNgE in component:" + event.target.name + " " + event.target.value);
   };
   render() 
 {
@@ -97,10 +61,6 @@ class Index extends React.Component {
        this.once++;
        this.query_homes();
     } 
-    //console.log("falid fn? "+ typeof this.update_user)
-//    const { classes } = this.props;
-    //console.log("main Rend" + JSON.stringify(this.state.show_init));
-    //console.log("type:" + typeof this.handle_init_screen);
     return (
 <Router>
     <div>

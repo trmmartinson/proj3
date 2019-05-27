@@ -15,8 +15,6 @@ module.exports = function(sequelize, Sequelize) {
 		square_feet: {type:Sequelize.INTEGER},
 		description: {type:Sequelize.TEXT},
               
-
-
 });
 console.log("homes---------------------");
 	return Home;

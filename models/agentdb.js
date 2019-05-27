@@ -8,11 +8,6 @@ module.exports = function(sequelize, Sequelize) {
 		phone: {type:Sequelize.TEXT},
 		agency: {type:Sequelize.TEXT},
 		image_url: {type:Sequelize.TEXT}
-              
-
-
-
-
 
 });
 console.log("agent---------------------");

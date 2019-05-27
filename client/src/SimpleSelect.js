@@ -26,11 +26,9 @@ class SimpleSelect extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      //nerf name: 'hai',
       labelWidth: 0,
     };
   }
-  
 
   componentDidMount() {
     this.setState({
@@ -41,14 +39,11 @@ class SimpleSelect extends React.Component {
   handleSelectChange = event => {
     alert("change in simple select");
     this.setState({ [event.target.name]: event.target.value });
-    //alert("ChaNgE in component:" + event.target.name + " " + event.target.value);
     this.props.send_data(event.target.name, event.target.value);
   };
 
   render() {
-    //alert("simple select fed :" + this.props.beds + "feet" + this.props.square_feet + "lot zie" + this.props.lot_size );
     const { classes } = this.props;
-    //console.log("component props" + JSON.stringify(this.props));
 
     return (
       <form className={classes.root} autoComplete="off">
@@ -74,7 +69,6 @@ class SimpleSelect extends React.Component {
             }
           >
    
-
             <MenuItem value={0}>$0</MenuItem>
             <MenuItem value={50000}>$50,000</MenuItem>
             <MenuItem value={100000}>$100,000 </MenuItem>
@@ -86,7 +80,6 @@ class SimpleSelect extends React.Component {
             <MenuItem value={600000}>$600,000</MenuItem>
             <MenuItem value={1000000}>$1,000,000</MenuItem>
             <MenuItem value={2000000}>$2,000,000</MenuItem>
-
 
           </Select>
         </FormControl>
@@ -216,8 +209,6 @@ class SimpleSelect extends React.Component {
           </Select>
         </FormControl>
 
-
-
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel
             ref={ref => {
@@ -252,14 +243,7 @@ class SimpleSelect extends React.Component {
           </Select>
         </FormControl>
 
-
-
-
-
       </form>
-
-
-
 
     );
   }
