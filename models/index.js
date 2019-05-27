@@ -7,13 +7,17 @@ var basename = path.basename(module.filename);
 var env = process.env.NODE_ENV || "development";
 var config = require(__dirname + "/../config/config.json")[env];
 var db = {};
+const dotenv = require('dotenv');
+dotenv.config();
+
+
 console.log("begin index"  );
 config.dialect = "mysql";
 if (process.env.NODE_ENV = "development") {
   config.host = "localhost";
   config.username = "root";
   config.database = "houses"; 
-  config.password = "test";  //process.env.LOCAL_PASSWORD;
+  config.password = process.env.PASSWORD;
 }
 else
 {
